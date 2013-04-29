@@ -11,8 +11,8 @@ package javaapplication11;
 public class Main {
 
     public static void main(String[] args) {   
-        Cuenta cuenta1 = new Cuenta(1, 10);
-        Cuenta cuenta2 = new Cuenta (2, 30);
+        Cuenta cuenta1 = new Cuenta(1, 10, 123);
+        Cuenta cuenta2 = new Cuenta (2, 30, 123);
         System.out.println(cuenta1.getSaldo());
         System.out.println(cuenta2.getSaldo());
       

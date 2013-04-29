@@ -13,13 +13,23 @@ public class Cuenta {
     private int numeroCuenta;
     private int contraseñaCuenta;
     private int saldo;
+    private int contrasenya;
 
     /**
      * @param args the command line arguments
      */
-    public Cuenta(int name, int saldo) {
-        numeroCuenta = name;
+    public Cuenta(int numeroCuenta, int saldo, int contrasenya) {
+        this.numeroCuenta = numeroCuenta;
         this.saldo = saldo;
+        this.contrasenya = contrasenya;
+    }
+    
+    public int getContrasenya() {
+        return contrasenya;
+    }
+    
+    public void setContrasenya() {
+        this.contrasenya = contrasenya;
     }
 
     public int getNumeroCuenta() {
@@ -38,28 +48,37 @@ public class Cuenta {
         numeroCuenta = valor;
     }
 
-    public boolean isTransferenciaNumerosRojos(int cantidad) {
-        if((getSaldo()-cantidad)<0 ){
+    public boolean isAutentificacion(int contrasenya) {
+        if (this.contrasenya != contrasenya) {
             return false;
-        }
-        else {
+            
+        } else {
             return true;
         }
-       
-        
+
     }
-    
+
+    public boolean isTransferenciaNumerosRojos(int cantidad) {
+        if ((getSaldo() - cantidad) < 0) {
+            return false;
+        } else {
+            return true;
+        }
+
+
+    }
+
     public String transferencia(Cuenta cuentaDestino, int cantidad) {
-        
-        
+
+
         if (getSaldo() < 0) {
             return "no puedes hacer las transferencias por moroso, consigue mas pasta";
         }
-         
-        if((getSaldo()-cantidad)<0 ){
+
+        if ((getSaldo() - cantidad) < 0) {
             return "te quedarias sin pasta y serias un moroso asi que no te dejo hacer la transferencia, so burro";
         }
-        
+
         cuentaDestino.setSaldo(cuentaDestino.getSaldo() + cantidad);
         saldo = saldo - cantidad;
 
