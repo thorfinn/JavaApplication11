@@ -38,10 +38,24 @@ public class Cuenta {
         numeroCuenta = valor;
     }
 
+    public boolean isTransferenciaNumerosRojos(int cantidad) {
+        if((getSaldo()-cantidad)<0 ){
+            return false;
+        }
+        else {
+            return true;
+        }
+       
+        
+    }
+    
     public String transferencia(Cuenta cuentaDestino, int cantidad) {
+        
+        
         if (getSaldo() < 0) {
             return "no puedes hacer las transferencias por moroso, consigue mas pasta";
         }
+         
         if((getSaldo()-cantidad)<0 ){
             return "te quedarias sin pasta y serias un moroso asi que no te dejo hacer la transferencia, so burro";
         }

@@ -4,24 +4,34 @@
  */
 package javaapplication11;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author alumno
  */
 public class NewJFrame extends javax.swing.JFrame {
 
-    Cuenta cuenta1;
-    Cuenta cuenta2;
-    Cuenta cuenta3;
+    Map<Integer, Cuenta> cuentas = new HashMap<Integer, Cuenta>();
 
     /**
      * Creates new form NewJFrame
      */
     public NewJFrame() {
-        cuenta1 = new Cuenta(1, 10);
-        cuenta2 = new Cuenta(2, 30);
+        Cuenta cuenta;
+
+        cuenta = new Cuenta(1, 10);
+        cuentas.put(cuenta.getNumeroCuenta(), cuenta);
+
+        cuenta = new Cuenta(2, 30);
+        cuentas.put(cuenta.getNumeroCuenta(), cuenta);
+
+        cuenta = new Cuenta(3, 60);
+        cuentas.put(cuenta.getNumeroCuenta(), cuenta);
+
         initComponents();
-        cuenta3 = new Cuenta(3, 60);
+
     }
 
     /**
@@ -34,9 +44,11 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldCuentaOrigen = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,16 +59,20 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("cuenta");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCuentaOrigen.setText("cuenta");
+        jTextFieldCuentaOrigen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldCuentaOrigenActionPerformed(evt);
             }
         });
 
         jTextField2.setText("dinero a transferir");
 
         jTextField3.setText("transferir a");
+
+        jLabel1.setText("jLabel1");
+
+        jLabel2.setText("Saldo actual");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,9 +81,11 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addContainerGap(239, Short.MAX_VALUE))
         );
@@ -77,103 +95,48 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(jButton1)
                 .addGap(35, 35, 35)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTextField1.getText().equals("1")) {
+        int numeroCuentaOrigen = Integer.parseInt(jTextFieldCuentaOrigen.getText());
 
+        Cuenta cuentaOrigen = cuentas.get(numeroCuentaOrigen);
 
-            int cantidad = Integer.parseInt(jTextField2.getText());
-            if (jTextField3.getText().equals("2")) {
-                String msgError = cuenta1.transferencia(cuenta2, cantidad);
-                if (msgError == null) {
-                    System.out.println("transferencia completada exitosamente");
-                }
-                else {
-                    System.out.println(msgError);
-                }
+        int numeroCuentaDestino = Integer.parseInt(jTextField3.getText());
 
-            }
-            if (jTextField3.getText().equals("3")) {
-                String msgError = cuenta1.transferencia(cuenta3, cantidad);
-                if (msgError == null) {
-                    System.out.println("transferencia completada exitosamente");
-                }
-                else {
-                    System.out.println(msgError);
-                }
-            }
+        Cuenta cuentaDestino = cuentas.get(numeroCuentaDestino);
 
+        int cantidad = Integer.parseInt(jTextField2.getText());
 
-
-        }
-        if (jTextField1.getText().equals("2")) {
-
-
-            int cantidad = Integer.parseInt(jTextField2.getText());
-            if (jTextField3.getText().equals("1")) {
-                String msgError = cuenta2.transferencia(cuenta1, cantidad);
-                if (msgError == null) {
-                    System.out.println("transferencia completada exitosamente");
-                }
-                else{
-                    System.out.println(msgError);
-                }
-            }
-            if (jTextField3.getText().equals("3")) {
-                String msgError = cuenta2.transferencia(cuenta3, cantidad);
-                if (msgError == null) {
-                    System.out.println("transferencia completada exitosamente");
-                }
-                else {
-                    System.out.println(msgError);
-                }
-            }
-
-
-
+        
+        jLabel2.setText(String.valueOf(cuentaOrigen.getSaldo()));
+        
+        String msgError = cuentaOrigen.transferencia(cuentaDestino, cantidad);
+        if (msgError == null) {
+            jLabel1.setText("transferencia completada exitosamente");
+        } else {
+            jLabel1.setText(msgError);
         }
 
-        if (jTextField1.getText().equals("3")) {
-
-
-            int cantidad = Integer.parseInt(jTextField2.getText());
-            if (jTextField3.getText().equals("1")) {
-                String msgError = cuenta3.transferencia(cuenta1, cantidad);
-                if (msgError == null) {
-                    System.out.println("transferencia completada exitosamente");
-                } else {
-                    System.out.println(msgError);
-                }
-            }
-            if (jTextField3.getText().equals("2")) {
-                String msgError = cuenta3.transferencia(cuenta2, cantidad);
-                if (msgError == null) {
-                    System.out.println("transferencia completada exitosamente");
-                } else {
-                    System.out.println(msgError);
-                }
-            }
-
-
-        }
-        System.out.println(cuenta1.getSaldo());
-        System.out.println(cuenta2.getSaldo());
-        System.out.println(cuenta3.getSaldo());
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldCuentaOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCuentaOrigenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldCuentaOrigenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,16 +152,32 @@ public class NewJFrame extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewJFrame.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } 
+
+catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -211,8 +190,10 @@ public class NewJFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldCuentaOrigen;
     // End of variables declaration//GEN-END:variables
 }
