@@ -31,7 +31,7 @@ public class JFrameLogin extends javax.swing.JFrame {
         cuentas.put(cuenta.getNumeroCuenta(), cuenta);
 
         initComponents();
-
+        jLabel1Error.setVisible(false);
 
     }
 
@@ -47,6 +47,7 @@ public class JFrameLogin extends javax.swing.JFrame {
         jTextFieldNumeroCuenta = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel1Error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +67,8 @@ public class JFrameLogin extends javax.swing.JFrame {
             }
         });
 
+        jLabel1Error.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,6 +76,7 @@ public class JFrameLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1Error)
                     .addComponent(jButton1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,7 +92,9 @@ public class JFrameLogin extends javax.swing.JFrame {
                 .addComponent(jTextFieldNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addComponent(jLabel1Error)
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -112,6 +118,10 @@ public class JFrameLogin extends javax.swing.JFrame {
             this.setVisible(false);
         }
 
+        else {
+           jLabel1Error.setText("contraseña o cuenta incorrecta");
+           jLabel1Error.setVisible(true);
+        }
 
 
 
@@ -155,6 +165,7 @@ public class JFrameLogin extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1Error;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldNumeroCuenta;
     // End of variables declaration//GEN-END:variables

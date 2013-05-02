@@ -48,6 +48,11 @@ public class Cuenta {
         numeroCuenta = valor;
     }
 
+    
+   
+    
+    
+    
     public boolean isAutentificacion(int contrasenya) {
         if (this.contrasenya != contrasenya) {
             return false;
@@ -56,6 +61,8 @@ public class Cuenta {
             return true;
         }
 
+        
+        
     }
 
     public boolean isTransferenciaNumerosRojos(int cantidad) {
